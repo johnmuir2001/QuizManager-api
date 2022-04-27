@@ -16,3 +16,17 @@ exports.authenticateUser = async (req, res, next) => {
         next(err)
     }
 }
+
+// Handle Fail or Successful User Creation
+exports.register = async (req, res, next) => {
+    try {
+        const user = await userService.create(req.body)
+        if(user){
+            res.send(user)
+        } else {
+            res.send({ message: "User successfully added"})
+        }
+    } catch(error) {
+        next(error)
+    }
+}

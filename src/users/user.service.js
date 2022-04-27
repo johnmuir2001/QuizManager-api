@@ -16,3 +16,23 @@ exports.authenticate = async ({ username, password }) => {
         };
     }
 }
+
+// creat new user
+exports.create = async (userParam) => {
+    // check to see if username is unique
+    if(await User.findOne({ username: userParam.username })){
+        return {message: 'Username ' +userParam.username + ' is already taken'};
+    }
+    // add new user
+    const user = new User(userParam);
+
+    // hash password
+    if (userParam.password){
+        userParam.password = bcrypt.hashSync(userParam.password, 10);
+    }
+    // replace password with hashed version
+    Object.assign(user, userParam)
+
+    // add user to DB
+    await user.save()
+}
