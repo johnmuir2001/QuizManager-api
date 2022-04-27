@@ -10,17 +10,18 @@ exports.getAllQuizzes = async (req, res) => {
     }
 }
 
+// get quiz by id and return that quiz
 exports.getQuizById = async (req, res) => {
     try {
         const _id = req.params.id;
-        const singleQuiz = await Quiz.findOne({_id})
+        const singleQuiz = await Quiz.findOne({_id});
         if(!singleQuiz){
-            return res.status(401).send({})
+            return res.status(401).send({});
         } else {
-            return res.status(200).send(singleQuiz)
+            return res.status(200).send(singleQuiz);
         }
     } catch (error) {
-        return res.status(500).send({ message: error })
+        return res.status(500).send({ message: error });
     }
 }
 
@@ -31,5 +32,20 @@ exports.addQuiz = async (req, res) => {
         return res.status(201).send(quiz);
     } catch (error) {
         return res.status(500).send({ message: error });
+    }
+}
+
+// update quiz by ID and handle errors
+exports.updateQuiz = async (req, res) => {
+    try {
+        const updatedQuiz = await Quiz.updateOne({ _id: req.params.id }, req.body);
+
+        if(updatedQuiz.modifiedCount > 0){
+            res.status(200).send(updatedQuiz)
+        } else {
+            throw new Error("update unsuccessful")
+        }
+    } catch (error) {
+        return res.status(500).send({ message: error })
     }
 }

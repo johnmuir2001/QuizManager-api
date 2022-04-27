@@ -5,13 +5,14 @@ const authorise = require("../_helpers/authorise");
 const {
     getAllQuizzes,
     getQuizById,
-    addQuiz
+    addQuiz,
+    updateQuiz
 } = require("./quiz.controller");
 
 // quiz routes
 quizRouter.get("/", getAllQuizzes); // Get all quizzes - all users have access
 quizRouter.get("/:id", getQuizById); // Get single quiz - all users have access
 quizRouter.post("/addQuiz", authorise(Role.SuperAdmin), addQuiz) // Add quiz - only Super Admin can add quiz
-//quizRouter.put("/update/:id", authorise(Role.SuperAdmin), updateQuiz) // Update quiz - only Super Admin can edit quiz
+quizRouter.put("/update/:id", authorise(Role.SuperAdmin), updateQuiz) // Update quiz - only Super Admin can edit quiz
 
 module.exports = quizRouter;
