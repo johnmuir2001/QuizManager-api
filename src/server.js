@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connection = require("./_helpers/db");
 const userRouter = require("./users/user.routes");
-
+const quizRouter = require("./quizzes/quiz.routes");
 const app = express();
 
 // connect to mongoDB
@@ -14,6 +14,7 @@ app.use(cors());
 
 // api routes
 app.use("/users", userRouter);
+app.use("/quiz", quizRouter);
 
 // server test
 app.get("/health", (req, res) => {
