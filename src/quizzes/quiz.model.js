@@ -23,9 +23,30 @@ const quizSchema = new mongoose.Schema({
                         default: false
                     }
                 }
-            ]
+            ],
+            stats: {
+                totalRight: {
+                    type: Number,
+                    default: 0
+                },
+                totalWrong: {
+                    type: Number,
+                    default: 0
+                },
+            }
         }
-    ]
+    ],
+    stats: {
+        plays: {
+            type: Number,
+            default: 0
+        },
+        totalQuestions: {
+            type: Number,
+            default: 0
+        }
+    }
+    
 });
 
 module.exports = mongoose.model("Quiz", quizSchema);

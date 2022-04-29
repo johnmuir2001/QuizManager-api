@@ -25,6 +25,30 @@ exports.getQuizById = async (req, res) => {
     }
 }
 
+// find question by id and update questions stats
+exports.updateQuestionStat = async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const updatedStats = await Quiz.updateOne({ "questions._id": _id}, {$set: { "questions.$.stats": req.body}});
+
+        return res.status(200).send(updatedStats);
+    } catch (error) {
+        return res.status(500).send({ message: error });
+    }
+}
+
+// find quiz by id update quiz stats
+exports.updateQuizStat = async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const updatedStats = await Quiz.updateOne({_id}, {$inc: { "stats.plays": 1}});
+
+        return res.status(200).send(updatedStats);
+    } catch (error) {
+        return res.status(500).send({ message: error });
+    }
+}
+
 // add quiz and handle errors
 exports.addQuiz = async (req, res) => {
     try {
