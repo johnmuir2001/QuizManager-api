@@ -8,7 +8,8 @@ const {
     updateQuestionStat,
     updateQuizStat,
     addQuiz,
-    updateQuiz
+    updateQuiz,
+    deleteQuiz
 } = require("./quiz.controller");
 
 // quiz routes
@@ -18,5 +19,6 @@ quizRouter.patch("/updateQuestionStat/:id", updateQuestionStat); // Update quest
 quizRouter.patch("/updateQuizStat/:id", updateQuizStat); // Update quiz stats - all users have access
 quizRouter.post("/addQuiz", authorise(Role.SuperAdmin), addQuiz); // Add quiz - only Super Admin can add quiz
 quizRouter.put("/update/:id", authorise(Role.SuperAdmin), updateQuiz); // Update quiz - only Super Admin can edit quiz
+quizRouter.delete("/delete/:id", authorise(Role.SuperAdmin), deleteQuiz); // Delete quiz - only Super Admin can edit quiz
 
 module.exports = quizRouter;

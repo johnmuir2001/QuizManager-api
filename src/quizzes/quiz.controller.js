@@ -73,3 +73,14 @@ exports.updateQuiz = async (req, res) => {
         return res.status(500).send({ message: error })
     }
 }
+
+// delete quiz by ID
+exports.deleteQuiz = async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const deletedQuiz = await Quiz.deleteOne({_id});
+        return res.status(201).send(deletedQuiz);
+    } catch (error) {
+        return res.status(500).send({ message: error });
+    }
+}
