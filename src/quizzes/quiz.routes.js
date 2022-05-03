@@ -17,8 +17,8 @@ quizRouter.get("/", getAllQuizzes); // Get all quizzes - all users have access
 quizRouter.get("/:id", getQuizById); // Get single quiz - all users have access
 quizRouter.patch("/updateQuestionStat/:id", updateQuestionStat); // Update question stats - all users have access
 quizRouter.patch("/updateQuizStat/:id", updateQuizStat); // Update quiz stats - all users have access
-quizRouter.post("/addQuiz", authorise(Role.SuperAdmin), addQuiz); // Add quiz - only Super Admin can add quiz
-quizRouter.put("/update/:id", authorise(Role.SuperAdmin), updateQuiz); // Update quiz - only Super Admin can edit quiz
-quizRouter.delete("/delete/:id", authorise(Role.SuperAdmin), deleteQuiz); // Delete quiz - only Super Admin can edit quiz
+quizRouter.post("/addQuiz", authorise(Role.Edit), addQuiz); // Add quiz - only Super Admin can add quiz
+quizRouter.put("/update/:id", authorise(Role.Edit), updateQuiz); // Update quiz - only Super Admin can edit quiz
+quizRouter.delete("/delete/:id", authorise(Role.Edit), deleteQuiz); // Delete quiz - only Super Admin can edit quiz
 
 module.exports = quizRouter;

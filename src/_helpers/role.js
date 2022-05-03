@@ -1,5 +1,5 @@
 module.exports = {
-    SuperAdmin: "SuperAdmin",
-    Admin: "Admin",
-    User: "User"
+    Edit: "Edit",
+    View: "View",
+    Restricted: "Restricted"
 }

@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default: Role.User
+        default: Role.Restricted
     }
 });
 
