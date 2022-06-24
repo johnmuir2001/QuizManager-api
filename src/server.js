@@ -21,5 +21,5 @@ app.get("/health", (req, res) => {
     res.status(200).send({ message: "Server is up!" });
 })
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 app.listen(port);
