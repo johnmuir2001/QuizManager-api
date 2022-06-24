@@ -21,5 +21,5 @@ app.get("/health", (req, res) => {
     res.status(200).send({ message: "Server is up!" });
 })
 
-const port = process.env.NODE_ENV === 'production' ? 80 : 4000;
+const port = process.env.PORT || 3000;
 app.listen(port);
