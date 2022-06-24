@@ -1,7 +1,5 @@
 const express = require("express");
 const quizRouter = express.Router();
-const Role = require("../_helpers/role");
-const authorise = require("../_helpers/authorise");
 const {
     getAllQuizzes,
     getQuizById,
